@@ -1,11 +1,18 @@
 import React from 'react';
-import Head from 'next/head';
 import styled from 'styled-components';
 import Masonry from 'react-masonry-component';
 
 const ItemWrapper = styled.div`
-  width: calc(100% / 3 - 10px);
-  margin-bottom: 10px;
+  width: calc((100% - 1rem) / 1 - 1rem);
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: 480px) {
+    width: calc((100% - 1rem) / 2 - 1rem);
+  }
+
+  @media screen and (min-width: 768px) {
+    width: calc((100% - 1rem) / 3 - 1rem);
+  }
 `;
 
 const Image = styled.img`
@@ -16,6 +23,7 @@ const Image = styled.img`
 const Wrapper = styled.div`
   .my-masonry-grid {
     width: 100%;
+    padding-left: 1rem;
   }
 `;
 
@@ -23,7 +31,7 @@ const masonryOptions = {
   columnWidth: '.grid-sizer',
   itemSelector: '.grid-item',
   percentPosition: true,
-  gutter: 10
+  gutter: 16
 };
 
 export const MasonryImages = function MasonryImages(props) {
