@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Masonry from 'react-masonry-component';
+import { Cloudinary } from 'cloudinary-core';
 
 const ItemWrapper = styled.div`
   width: calc((100% - 1rem) / 1 - 1rem);
@@ -31,7 +32,8 @@ const masonryOptions = {
   columnWidth: '.grid-sizer',
   itemSelector: '.grid-item',
   percentPosition: true,
-  gutter: 16
+  gutter: 16,
+  transitionDuration: '0s'
 };
 
 export const MasonryImages = function MasonryImages(props) {
