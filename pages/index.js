@@ -5,8 +5,19 @@ import { getHero } from '../lib/api';
 // Shared components
 import { Hero } from '../components/Hero';
 import { MasonryImages } from '../components/MasonryImages';
+import { Container } from '../components/Container';
 
 export default function Home(props) {
+  const tempImages = [
+    'https://via.placeholder.com/150x100',
+    'https://via.placeholder.com/150x300',
+    'https://via.placeholder.com/200x100',
+    'https://via.placeholder.com/70x100',
+    'https://via.placeholder.com/300x900',
+    'https://via.placeholder.com/150x100',
+    'https://via.placeholder.com/150x100'
+  ];
+
   return (
     <div>
       <Head>
@@ -16,7 +27,9 @@ export default function Home(props) {
         heading={props.hero.fields.heading}
         image={props.hero.fields.image[0].secure_url}
       />
-      <MasonryImages />
+      <Container>
+        <MasonryImages images={tempImages} />
+      </Container>
       <h2>Here is a h2</h2>
       <h3>Here is a h3</h3>
       <h4>Here is a h4</h4>

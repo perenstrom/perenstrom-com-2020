@@ -30,27 +30,11 @@ export const MasonryImages = function MasonryImages(props) {
   return (
     <Wrapper>
       <Masonry className={'my-masonry-grid'} options={masonryOptions}>
-        <ItemWrapper className="grid-item grid-sizer">
-          <Image src="https://via.placeholder.com/150x100" />
-        </ItemWrapper>
-        <ItemWrapper className="grid-item">
-          <Image src="https://via.placeholder.com/150x400" />
-        </ItemWrapper>
-        <ItemWrapper className="grid-item">
-          <Image src="https://via.placeholder.com/200x100" />
-        </ItemWrapper>
-        <ItemWrapper className="grid-item">
-          <Image src="https://via.placeholder.com/70x100" />
-        </ItemWrapper>
-        <ItemWrapper className="grid-item">
-          <Image src="https://via.placeholder.com/300x900" />
-        </ItemWrapper>
-        <ItemWrapper className="grid-item">
-          <Image src="https://via.placeholder.com/150x100" />
-        </ItemWrapper>
-        <ItemWrapper className="grid-item">
-          <Image src="https://via.placeholder.com/150x100" />
-        </ItemWrapper>
+        {props.images.map((image) => (
+          <ItemWrapper className="grid-item grid-sizer">
+            <Image src={image} />
+          </ItemWrapper>
+        ))}
       </Masonry>
     </Wrapper>
   );
