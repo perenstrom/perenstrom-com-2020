@@ -11,12 +11,17 @@ const Wrapper = styled.div`
   background-size: cover;
 `;
 
+const Header = styled.h1`
+  margin-top: 0;
+  margin-bottom: 0;
+`;
+
 export const Hero = function Hero(props) {
   const { heading, image } = props;
 
   return (
     <Wrapper image={image}>
-      <h1>{heading}</h1>
+      <Header>{heading}</Header>
     </Wrapper>
   );
 };
