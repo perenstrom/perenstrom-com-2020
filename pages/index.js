@@ -5,7 +5,6 @@ import { getHero } from '../lib/api';
 // Shared components
 import { Hero } from '../components/Hero';
 import { MasonryImages } from '../components/MasonryImages';
-import { MasonryImages2 } from '../components/MasonryImages2';
 
 export default function Home(props) {
   return (

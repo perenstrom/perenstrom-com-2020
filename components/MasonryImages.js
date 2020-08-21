@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Masonry from 'react-masonry-component';
 
 const ItemWrapper = styled.div`
-  width: calc(33.3333% - 10px * 2);
+  width: calc(100% / 3 - 10px);
   margin-bottom: 10px;
 `;
 
@@ -28,32 +28,30 @@ const masonryOptions = {
 
 export const MasonryImages = function MasonryImages(props) {
   return (
-    <>
-      <Wrapper>
-        <Masonry className={'my-masonry-grid'} options={masonryOptions}>
-          <ItemWrapper className="grid-item grid-sizer">
-            <Image src="https://via.placeholder.com/150x100" />
-          </ItemWrapper>
-          <ItemWrapper className="grid-item">
-            <Image src="https://via.placeholder.com/150x400" />
-          </ItemWrapper>
-          <ItemWrapper className="grid-item">
-            <Image src="https://via.placeholder.com/200x100" />
-          </ItemWrapper>
-          <ItemWrapper className="grid-item">
-            <Image src="https://via.placeholder.com/70x100" />
-          </ItemWrapper>
-          <ItemWrapper className="grid-item">
-            <Image src="https://via.placeholder.com/300x900" />
-          </ItemWrapper>
-          <ItemWrapper className="grid-item">
-            <Image src="https://via.placeholder.com/150x100" />
-          </ItemWrapper>
-          <ItemWrapper className="grid-item">
-            <Image src="https://via.placeholder.com/150x100" />
-          </ItemWrapper>
-        </Masonry>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <Masonry className={'my-masonry-grid'} options={masonryOptions}>
+        <ItemWrapper className="grid-item grid-sizer">
+          <Image src="https://via.placeholder.com/150x100" />
+        </ItemWrapper>
+        <ItemWrapper className="grid-item">
+          <Image src="https://via.placeholder.com/150x400" />
+        </ItemWrapper>
+        <ItemWrapper className="grid-item">
+          <Image src="https://via.placeholder.com/200x100" />
+        </ItemWrapper>
+        <ItemWrapper className="grid-item">
+          <Image src="https://via.placeholder.com/70x100" />
+        </ItemWrapper>
+        <ItemWrapper className="grid-item">
+          <Image src="https://via.placeholder.com/300x900" />
+        </ItemWrapper>
+        <ItemWrapper className="grid-item">
+          <Image src="https://via.placeholder.com/150x100" />
+        </ItemWrapper>
+        <ItemWrapper className="grid-item">
+          <Image src="https://via.placeholder.com/150x100" />
+        </ItemWrapper>
+      </Masonry>
+    </Wrapper>
   );
 };
