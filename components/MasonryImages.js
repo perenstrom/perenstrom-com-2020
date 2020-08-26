@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Masonry from 'react-masonry-component';
-import { Cloudinary } from 'cloudinary-core';
+
+import { ResponsiveImage } from './ResponsiveImage';
 
 const ItemWrapper = styled.div`
   width: calc((100% - 1rem) / 1 - 1rem);
@@ -14,11 +15,6 @@ const ItemWrapper = styled.div`
   @media screen and (min-width: 768px) {
     width: calc((100% - 1rem) / 3 - 1rem);
   }
-`;
-
-const Image = styled.img`
-  display: block;
-  width: 100%;
 `;
 
 const Wrapper = styled.div`
@@ -36,16 +32,19 @@ const masonryOptions = {
   transitionDuration: '0s'
 };
 
-export const MasonryImages = function MasonryImages(props) {
+export const MasonryImages = React.memo(function MasonryImages(props) {
   return (
     <Wrapper>
       <Masonry className={'my-masonry-grid'} options={masonryOptions}>
         {props.images.map((image) => (
           <ItemWrapper className="grid-item grid-sizer">
-            <Image src={image} />
+            <ResponsiveImage
+              cloudinaryImage={image.thumbnail}
+              width={Math.ceil(1280 / 3)}
+            />
           </ItemWrapper>
         ))}
       </Masonry>
     </Wrapper>
   );
-};
+});

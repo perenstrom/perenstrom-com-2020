@@ -9,7 +9,6 @@
     "export": "next build && next export"
   },
   "dependencies": {
-    "cloudinary-core": "^2.11.2",
     "contentful": "^7.14.6",
     "next": "9.5.2",
     "react": "16.13.1",
