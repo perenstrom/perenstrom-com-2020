@@ -40,7 +40,7 @@ export const MasonryImages = React.memo(function MasonryImages(props) {
           <ItemWrapper className="grid-item grid-sizer">
             <ResponsiveImage
               cloudinaryImage={image.thumbnail}
-              width={Math.ceil(1280 / 3)}
+              width={Math.ceil((1280 - 3 * 16) / 3)}
             />
           </ItemWrapper>
         ))}

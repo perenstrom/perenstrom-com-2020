@@ -7,7 +7,7 @@ const Image = styled.img`
 `;
 
 export const ResponsiveImage = React.memo(function ResponsiveImage(props) {
-  const { cloudinaryImage, width, quality = 100 } = props;
+  const { cloudinaryImage, width, quality = 80 } = props;
 
   const baseUrl = process.env.CLOUDINARY_BASE_URL;
   const currentTransformations = cloudinaryImage.raw_transformation;
