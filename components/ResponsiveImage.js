@@ -6,6 +6,21 @@ const Image = styled.img`
   width: 100%;
 `;
 
+const imageTypes = {
+  jpg: {
+    type: 'image/jpeg',
+    fileExtension: 'jpg'
+  },
+  webp: {
+    type: 'image/webp',
+    fileExtension: 'webp'
+  },
+  avif: {
+    type: 'image/avif',
+    fileExtension: 'avif'
+  }
+};
+
 export const ResponsiveImage = React.memo(function ResponsiveImage(props) {
   const { cloudinaryImage, width, quality = 80 } = props;
 
@@ -18,7 +33,6 @@ export const ResponsiveImage = React.memo(function ResponsiveImage(props) {
   const widthTransformation = width ? `w_${width}` : 'w_auto';
   const widthTransformationRetina = width ? `w_${width * 2}` : 'w_auto';
   const imageId = cloudinaryImage.public_id;
-  const format = cloudinaryImage.format;
   const newUrlBase = [
     baseUrl,
     currentTransformationsAlteredQuality,
@@ -31,13 +45,22 @@ export const ResponsiveImage = React.memo(function ResponsiveImage(props) {
     widthTransformationRetina,
     imageId
   ].join('/');
-  const newUrl = `${newUrlBase}.${format}`;
-  const newUrlRetina = `${newUrlBaseRetina}.${format}`;
 
   return (
     <picture>
-      <source srcSet={`${newUrlRetina} 2x, ${newUrl} 1x`} />
-      <Image src={newUrl} />
+      <source
+        srcSet={`${newUrlBaseRetina}.${imageTypes.avif.fileExtension} 2x, ${newUrlBase}.${imageTypes.avif.fileExtension} 1x`}
+        type={imageTypes.avif.type}
+      />
+      <source
+        srcSet={`${newUrlBaseRetina}.${imageTypes.webp.fileExtension} 2x, ${newUrlBase}.${imageTypes.webp.fileExtension} 1x`}
+        type={imageTypes.webp.type}
+      />
+      <source
+        srcSet={`${newUrlBaseRetina}.${imageTypes.jpg.fileExtension} 2x, ${newUrlBase}.${imageTypes.jpg.fileExtension} 1x`}
+        type={imageTypes.jpg.type}
+      />
+      <Image src={`${newUrlBase}.${imageTypes.jpg.fileExtension}`} />
     </picture>
   );
 });
