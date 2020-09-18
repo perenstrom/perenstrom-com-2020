@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "contentful": "^7.14.6",
+    "luminous-lightbox": "^2.3.2",
     "next": "9.5.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -17,6 +18,11 @@
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.11.1"
+    "@types/jest": "^26.0.14",
+    "babel-plugin-styled-components": "^1.11.1",
+    "eslint": "^7.9.0",
+    "eslint-plugin-jest": "^24.0.1",
+    "eslint-plugin-react": "^7.20.6",
+    "jest": "^26.4.2"
   }
 }
