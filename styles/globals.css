@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700,400italic');
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700,400italic&display=swap');
+@import url('../node_modules/luminous-lightbox/dist/luminous-basic.css');
 
 @media screen and (min-width: 40em) {
   body,
