@@ -1,8 +1,8 @@
 import { IMAGE_TYPES } from '../constants';
 
 export const getCloudinaryUrl = (cloudinaryImage = {}, options) => {
-  const BASE_URL = process.env.CLOUDINARY_BASE_URL;
-  const { width, quality = 80, imageType = IMAGE_TYPES.jpg } = options;
+  const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
+  const { width, quality = 80, imageType = IMAGE_TYPES.jpeg } = options;
   const currentTransformations = cloudinaryImage.raw_transformation;
   const currentTransformationsAlteredQuality = currentTransformations.replace(
     'q_auto',

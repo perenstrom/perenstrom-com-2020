@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import Masonry from 'react-masonry-component';
 import { LuminousGallery } from 'luminous-lightbox';
 
+import { IMAGE_TYPES } from '../constants';
+import { getCloudinaryUrl } from '../helpers/cloudinary-helper';
+
 import { ResponsiveImage } from './ResponsiveImage';
 
 const ItemWrapper = styled.div`
@@ -35,15 +38,26 @@ const masonryOptions = {
 
 export const MasonryImages = React.memo(function MasonryImages(props) {
   useEffect(() => {
-    new LuminousGallery(document.querySelectorAll('.lightbox-image'));
+    if (document) {
+      new LuminousGallery(document.querySelectorAll('.lightbox-image'));
+    }
   }, []);
 
   return (
     <Wrapper>
       <Masonry className={'my-masonry-grid'} options={masonryOptions}>
         {props.images.map((image) => (
-          <ItemWrapper className="grid-item grid-sizer">
-            <a class="lightbox-image" href={image.image.secure_url}>
+          <ItemWrapper
+            className="grid-item grid-sizer"
+            key={image.image.public_id}
+          >
+            <a
+              className="lightbox-image"
+              href={getCloudinaryUrl(image.image, {
+                width: 1200,
+                imageType: IMAGE_TYPES.jpeg
+              })}
+            >
               <ResponsiveImage
                 cloudinaryImage={image.thumbnail}
                 width={Math.ceil((1280 - 3 * 16) / 3)}

@@ -1,5 +1,5 @@
 export const IMAGE_TYPES = {
-  jpg: {
+  jpeg: {
     type: 'image/jpeg',
     fileExtension: 'jpg'
   },
