@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { getHero, getImages } from '../lib/api';
 
 // Shared components
+import { Menu } from '../components/Menu';
 import { Hero } from '../components/Hero';
 import { MasonryImages } from '../components/MasonryImages';
 import { Container } from '../components/Container';
@@ -17,6 +18,7 @@ export default function Home(props) {
         heading={props.hero.fields.heading}
         image={props.hero.fields.image[0].secure_url}
       />
+      <Menu />
       <Container>
         <MasonryImages images={props.images} />
       </Container>
