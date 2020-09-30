@@ -171,7 +171,7 @@
         "id": "image",
         "type": "ContentType",
         "createdAt": "2020-08-21T18:50:32.608Z",
-        "updatedAt": "2020-08-26T15:34:16.186Z",
+        "updatedAt": "2020-09-30T17:20:22.646Z",
         "environment": {
           "sys": {
             "id": "master",
@@ -179,8 +179,8 @@
             "linkType": "Environment"
           }
         },
-        "publishedVersion": 5,
-        "publishedAt": "2020-08-26T15:34:16.186Z",
+        "publishedVersion": 7,
+        "publishedAt": "2020-09-30T17:20:22.646Z",
         "firstPublishedAt": "2020-08-21T18:50:32.977Z",
         "createdBy": {
           "sys": {
@@ -196,8 +196,8 @@
             "id": "4ELAZrsyTBt6fJOQjDEza0"
           }
         },
-        "publishedCounter": 3,
-        "version": 6,
+        "publishedCounter": 4,
+        "version": 8,
         "publishedBy": {
           "sys": {
             "type": "Link",
@@ -213,6 +213,17 @@
         {
           "id": "name",
           "name": "Name",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "altText",
+          "name": "Alt text",
           "type": "Symbol",
           "localized": false,
           "required": false,
@@ -389,7 +400,7 @@
             "linkType": "Space"
           }
         },
-        "version": 6,
+        "version": 8,
         "createdAt": "2020-08-21T18:50:33.057Z",
         "createdBy": {
           "sys": {
@@ -398,7 +409,7 @@
             "linkType": "User"
           }
         },
-        "updatedAt": "2020-08-26T15:34:16.828Z",
+        "updatedAt": "2020-09-30T17:20:23.311Z",
         "updatedBy": {
           "sys": {
             "id": "4ELAZrsyTBt6fJOQjDEza0",
@@ -424,6 +435,11 @@
       "controls": [
         {
           "fieldId": "name",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "altText",
           "widgetId": "singleLine",
           "widgetNamespace": "builtin"
         },
