@@ -10,7 +10,7 @@ const Image = styled.img`
 `;
 
 export const ResponsiveImage = React.memo(function ResponsiveImage(props) {
-  const { cloudinaryImage, width, quality = 80 } = props;
+  const { cloudinaryImage, width, quality = 80, alt } = props;
 
   const normalOptions = {
     transformations: { width: width },
@@ -67,7 +67,10 @@ export const ResponsiveImage = React.memo(function ResponsiveImage(props) {
         srcSet={`${imageUrls.jpeg.retina} 2x, ${imageUrls.jpeg.normal} 1x`}
         type={IMAGE_TYPES.jpeg.type}
       />
-      <Image src={imageUrls.jpeg.normal} />
+      <Image
+        src={imageUrls.jpeg.normal}
+        alt={alt || cloudinaryImage?.context?.custom?.alt}
+      />
     </picture>
   );
 });

@@ -83,6 +83,7 @@ export const MasonryImages = React.memo(function MasonryImages(props) {
               <ResponsiveImage
                 cloudinaryImage={image.thumbnail}
                 width={Math.ceil((1280 - 3 * 16) / 3)}
+                alt={image.altText}
               />
             </ImageComponent>
           </ItemWrapper>
