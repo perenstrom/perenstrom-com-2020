@@ -13,11 +13,11 @@ export const ResponsiveImage = React.memo(function ResponsiveImage(props) {
   const { cloudinaryImage, width, quality = 80 } = props;
 
   const normalOptions = {
-    width: width,
+    transformations: { width: width },
     quality: quality
   };
   const retinaOptions = {
-    width: width * 2,
+    transformations: { width: width * 2 },
     quality: quality
   };
   const imageUrls = {

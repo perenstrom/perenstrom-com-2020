@@ -46,7 +46,7 @@ const ImageComponent = (props) => {
       <a
         className="lightbox-image"
         href={getCloudinaryUrl(image.image, {
-          width: 1200,
+          transformations: { width: 1200 },
           imageType: IMAGE_TYPES.jpeg
         })}
       >

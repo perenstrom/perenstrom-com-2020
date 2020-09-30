@@ -33,7 +33,7 @@ describe('Cloudinary helper', () => {
   it('will return correct url', () => {
     // Arrange
     const options = {
-      width: 500,
+      transformations: { width: 500 },
       quality: 40,
       imageType: IMAGE_TYPES.jpg
     };
@@ -50,7 +50,7 @@ describe('Cloudinary helper', () => {
   it('will return correct url for avif', () => {
     // Arrange
     const options = {
-      width: 500,
+      transformations: { width: 500 },
       quality: 40,
       imageType: IMAGE_TYPES.avif
     };
@@ -61,6 +61,23 @@ describe('Cloudinary helper', () => {
     // Assert
     const expectedUrl =
       'https://res.cloudinary.com/example/image/upload/f_auto,q_40/w_500/v1000000000/example.avif';
+    expect(newUrl).toEqual(expectedUrl);
+  });
+
+  it('will return correct url for multiple transformations', () => {
+    // Arrange
+    const options = {
+      transformations: { width: 500, height: 300 },
+      quality: 40,
+      imageType: IMAGE_TYPES.avif
+    };
+
+    // Act
+    const newUrl = getCloudinaryUrl(cloudinaryImage, options);
+
+    // Assert
+    const expectedUrl =
+      'https://res.cloudinary.com/example/image/upload/f_auto,q_40/w_500,h_300/v1000000000/example.avif';
     expect(newUrl).toEqual(expectedUrl);
   });
 });

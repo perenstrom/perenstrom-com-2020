@@ -16,7 +16,7 @@ export default function Home(props) {
       </Head>
       <Hero
         heading={props.hero.fields.heading}
-        image={props.hero.fields.image[0].secure_url}
+        image={props.hero.fields.image[0]}
       />
       <Menu />
       <Container>
