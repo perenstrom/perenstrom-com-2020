@@ -10,12 +10,16 @@ export const getCloudinaryUrl = (cloudinaryImage = {}, options) => {
   }
 };
 
-const formatCloudinaryUrl = (imageUrl = '', options) => {
+export const isCloudinaryUrl = (imageUrl) => {
   const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
   const cloudinaryBaseRegex = new RegExp(`^${BASE_URL}`);
-  const urlIsCloudinary = cloudinaryBaseRegex.test(imageUrl);
+  return cloudinaryBaseRegex.test(imageUrl);
+};
 
-  if (!urlIsCloudinary) {
+const formatCloudinaryUrl = (imageUrl = '', options) => {
+  const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
+
+  if (!isCloudinaryUrl(imageUrl)) {
     return imageUrl;
   }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import Head from 'next/head';
 import { getPage, getPageSlugs } from '../lib/api';
 import ReactMarkdown from 'react-markdown';
@@ -7,6 +8,22 @@ import ReactMarkdown from 'react-markdown';
 import { Menu } from '../components/Menu';
 // import { Hero } from '../components/Hero';
 import { Container } from '../components/Container';
+import { isCloudinaryUrl } from '../helpers/cloudinary-helper';
+import { ResponsiveImage } from '../components/ResponsiveImage';
+
+const MarkdownContainer = styled.div`
+  & img {
+    width: 100%;
+  }
+`;
+
+const ImageRender = (props) => {
+  if (isCloudinaryUrl(props.src)) {
+    return <ResponsiveImage width={1280} cloudinaryImage={props.src} alt={props.alt} />;
+  } else {
+    return <img src={props.src} alt={props.alt} />;
+  }
+};
 
 export default function Home(props) {
   return (
@@ -17,7 +34,11 @@ export default function Home(props) {
       <Menu />
       <Container>
         <h1>{props.page.fields.title}</h1>
-        <ReactMarkdown>{props.page.fields.content}</ReactMarkdown>
+        <MarkdownContainer>
+          <ReactMarkdown renderers={{ image: ImageRender }}>
+            {props.page.fields.content}
+          </ReactMarkdown>
+        </MarkdownContainer>
       </Container>
     </div>
   );
