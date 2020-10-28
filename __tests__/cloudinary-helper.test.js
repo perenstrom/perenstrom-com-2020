@@ -35,7 +35,7 @@ describe('Cloudinary helper', () => {
     const options = {
       transformations: { width: 500 },
       quality: 40,
-      imageType: IMAGE_TYPES.jpg
+      imageType: IMAGE_TYPES.jpeg
     };
 
     // Act
@@ -78,6 +78,76 @@ describe('Cloudinary helper', () => {
     // Assert
     const expectedUrl =
       'https://res.cloudinary.com/example/image/upload/f_auto,q_40/w_500,h_300/v1000000000/example.avif';
+    expect(newUrl).toEqual(expectedUrl);
+  });
+});
+
+describe('Cloudinary helper from url', () => {
+  it('will return correct url', () => {
+    // Arrange
+    const cloudinaryImage = 'https://res.cloudinary.com/example/image/upload/f_auto,q_auto/v1000000000/example.jpg';
+    const options = {
+      transformations: { width: 500 },
+      imageType: IMAGE_TYPES.jpeg
+    };
+
+    // Act
+    const newUrl = getCloudinaryUrl(cloudinaryImage, options);
+
+    // Assert
+    const expectedUrl =
+      'https://res.cloudinary.com/example/image/upload/w_500/f_auto,q_auto/v1000000000/example.jpg';
+    expect(newUrl).toEqual(expectedUrl);
+  });
+
+  it('will return correct url without initial transformations', () => {
+    // Arrange
+    const cloudinaryImage = 'https://res.cloudinary.com/example/image/upload/v1000000000/example.jpg';
+    const options = {
+      transformations: { width: 500 },
+      imageType: IMAGE_TYPES.png
+    };
+
+    // Act
+    const newUrl = getCloudinaryUrl(cloudinaryImage, options);
+
+    // Assert
+    const expectedUrl =
+      'https://res.cloudinary.com/example/image/upload/w_500/v1000000000/example.png';
+    expect(newUrl).toEqual(expectedUrl);
+  });
+
+  it('will return correct url without initial transformations or id', () => {
+    // Arrange
+    const cloudinaryImage = 'https://res.cloudinary.com/example/image/upload/example.jpg';
+    const options = {
+      transformations: { width: 500 },
+      imageType: IMAGE_TYPES.jpeg
+    };
+
+    // Act
+    const newUrl = getCloudinaryUrl(cloudinaryImage, options);
+
+    // Assert
+    const expectedUrl =
+      'https://res.cloudinary.com/example/image/upload/w_500/example.jpg';
+    expect(newUrl).toEqual(expectedUrl);
+  });
+
+  it('will return correct url when not cloudinary', () => {
+    // Arrange
+    const cloudinaryImage = 'https://www.example.com/example.jpg';
+    const options = {
+      transformations: { width: 500 },
+      imageType: IMAGE_TYPES.jpeg
+    };
+
+    // Act
+    const newUrl = getCloudinaryUrl(cloudinaryImage, options);
+
+    // Assert
+    const expectedUrl =
+      'https://www.example.com/example.jpg';
     expect(newUrl).toEqual(expectedUrl);
   });
 });

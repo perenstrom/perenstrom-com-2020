@@ -10,5 +10,9 @@ export const IMAGE_TYPES = {
   avif: {
     type: 'image/avif',
     fileExtension: 'avif'
+  },
+  png: {
+    type: 'image/png',
+    fileExtension: 'png'
   }
 };

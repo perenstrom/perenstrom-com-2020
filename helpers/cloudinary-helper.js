@@ -1,6 +1,40 @@
 import { IMAGE_TYPES } from '../constants';
 
 export const getCloudinaryUrl = (cloudinaryImage = {}, options) => {
+  if (typeof cloudinaryImage === 'string') {
+    return formatCloudinaryUrl(cloudinaryImage, options);
+  } else if (typeof cloudinaryImage === 'object') {
+    return formatCloudinaryObject(cloudinaryImage, options);
+  } else {
+    return null;
+  }
+};
+
+const formatCloudinaryUrl = (imageUrl = '', options) => {
+  const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
+  const cloudinaryBaseRegex = new RegExp(`^${BASE_URL}`);
+  const urlIsCloudinary = cloudinaryBaseRegex.test(imageUrl);
+
+  if (!urlIsCloudinary) {
+    return imageUrl;
+  }
+
+  const fileExtensionRegex = new RegExp('\\.\\w+?$');
+  const originalFileExtension = imageUrl.match(fileExtensionRegex)[0];
+  const newFileExtension = options.imageType
+    ? `.${options.imageType.fileExtension}`
+    : originalFileExtension;
+  const imageUrlWithoutExtension = imageUrl.replace(fileExtensionRegex, '');
+  const optionsString = formatTransformations(options.transformations);
+  const newUrl = `${BASE_URL}/${optionsString}${imageUrlWithoutExtension.replace(
+    BASE_URL,
+    ''
+  )}${newFileExtension}`;
+
+  return newUrl;
+};
+
+const formatCloudinaryObject = (cloudinaryImage = {}, options) => {
   const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
   const {
     transformations,
@@ -41,5 +75,6 @@ const formatTransformations = (transformations) => {
 const TRANSFORMATIONS = {
   width: 'w',
   height: 'h',
-  crop: 'c'
+  crop: 'c',
+  quality: 'q'
 };
