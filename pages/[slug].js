@@ -30,6 +30,8 @@ export default function Home(props) {
     <div>
       <Head>
         <title>{props.page.fields.title} | Per Enström</title>
+        <meta name="description" content={props.page.fields.metaDescription} />
+        <meta property="og:description" content={props.page.fields.metaDescription} /> 
       </Head>
       <Menu />
       <Container>
