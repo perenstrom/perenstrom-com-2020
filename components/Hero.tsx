@@ -1,53 +1,56 @@
 import React from 'react';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 import { getCloudinaryUrl } from '../helpers/cloudinary-helper';
+import { CloudinaryAsset } from '../types/cloudinary';
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{
+  $images: { small: string; medium: string; large: string };
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 7rem;
-  background-image: ${(props) => `url("${props.images.small}")`};
+  background-image: ${(props) => `url("${props.$images.small}")`};
   background-size: cover;
 
   @media screen and (min-width: 480px) {
-  background-image: ${(props) => `url("${props.images.medium}")`};
-  height: 12.5rem;
+    background-image: ${(props) => `url("${props.$images.medium}")`};
+    height: 12.5rem;
   }
 
   @media screen and (min-width: 768px) {
-  background-image: ${(props) => `url("${props.images.large}")`};
+    background-image: ${(props) => `url("${props.$images.large}")`};
   }
 `;
 
-export const Hero = function Hero(props) {
+export const Hero = function Hero(props: { image: CloudinaryAsset }) {
   const { image } = props;
 
   const imageUrls = {
     small: getCloudinaryUrl(image, {
       transformations: {
-        width: '480',
-        height: '140',
+        width: 480,
+        height: 140,
         crop: 'fill'
       }
     }),
     medium: getCloudinaryUrl(image, {
       transformations: {
-        width: '768',
-        height: '250',
+        width: 768,
+        height: 250,
         crop: 'fill'
       }
     }),
     large: getCloudinaryUrl(image, {
       transformations: {
-        width: '1280',
-        height: '250',
+        width: 1280,
+        height: 250,
         crop: 'fill'
       }
     })
   };
 
-  return <Wrapper images={imageUrls} />;
+  return <Wrapper $images={imageUrls} />;
 };

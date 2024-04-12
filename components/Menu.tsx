@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
 import Link from 'next/link';
+import React from 'react';
+import { styled } from 'styled-components';
 
 const Wrapper = styled.div`
   display: flex;
@@ -40,7 +40,7 @@ const Header = styled.h1`
   }
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
@@ -48,11 +48,9 @@ export const Menu = function Menu() {
   return (
     <Wrapper>
       <Container>
-        <Link href="/" passHref>
-          <StyledLink>
-            <Header>Per Enström</Header>
-          </StyledLink>
-        </Link>
+        <StyledLink href="/">
+          <Header>Per Enström</Header>
+        </StyledLink>
       </Container>
     </Wrapper>
   );

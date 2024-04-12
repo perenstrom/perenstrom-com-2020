@@ -15,4 +15,4 @@ export const IMAGE_TYPES = {
     type: 'image/png',
     fileExtension: 'png'
   }
-};
+} as const;
