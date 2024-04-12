@@ -1,30 +1,40 @@
 import { IMAGE_TYPES } from '../constants';
+import {
+  CloudinaryAsset,
+  CloudinaryOptions,
+  Transformations
+} from '../types/cloudinary';
 
-export const getCloudinaryUrl = (cloudinaryImage = {}, options) => {
+export const getCloudinaryUrl = (
+  cloudinaryImage: CloudinaryAsset | string,
+  options: CloudinaryOptions
+) => {
   if (typeof cloudinaryImage === 'string') {
     return formatCloudinaryUrl(cloudinaryImage, options);
   } else if (typeof cloudinaryImage === 'object') {
     return formatCloudinaryObject(cloudinaryImage, options);
   } else {
-    return null;
+    return '';
   }
 };
 
-export const isCloudinaryUrl = (imageUrl) => {
+export const isCloudinaryUrl = (imageUrl: string) => {
   const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
   const cloudinaryBaseRegex = new RegExp(`^${BASE_URL}`);
   return cloudinaryBaseRegex.test(imageUrl);
 };
 
-const formatCloudinaryUrl = (imageUrl = '', options) => {
-  const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
+const formatCloudinaryUrl = (imageUrl = '', options: CloudinaryOptions) => {
+  const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL || '';
 
   if (!isCloudinaryUrl(imageUrl)) {
     return imageUrl;
   }
 
   const fileExtensionRegex = new RegExp('\\.\\w+?$');
-  const originalFileExtension = imageUrl.match(fileExtensionRegex)[0];
+  const originalFileExtension = imageUrl.match(fileExtensionRegex)?.[0];
+  if (!originalFileExtension) return imageUrl;
+
   const newFileExtension = options.imageType
     ? `.${options.imageType.fileExtension}`
     : originalFileExtension;
@@ -38,7 +48,10 @@ const formatCloudinaryUrl = (imageUrl = '', options) => {
   return newUrl;
 };
 
-const formatCloudinaryObject = (cloudinaryImage = {}, options) => {
+const formatCloudinaryObject = (
+  cloudinaryImage: CloudinaryAsset,
+  options: CloudinaryOptions
+) => {
   const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
   const {
     transformations,
@@ -63,12 +76,14 @@ const formatCloudinaryObject = (cloudinaryImage = {}, options) => {
   return `${newUrlBase}.${imageType.fileExtension}`;
 };
 
-const formatTransformations = (transformations) => {
-  const transformationStrings = [];
+const formatTransformations = (transformations: Transformations) => {
+  const transformationStrings: string[] = [];
   Object.keys(transformations).forEach((transformationKey) => {
     if (Object.keys(TRANSFORMATIONS).indexOf(transformationKey) !== -1) {
       transformationStrings.push(
-        `${TRANSFORMATIONS[transformationKey]}_${transformations[transformationKey]}`
+        `${
+          TRANSFORMATIONS[transformationKey as keyof typeof TRANSFORMATIONS]
+        }_${transformations[transformationKey as keyof typeof TRANSFORMATIONS]}`
       );
     }
   });
