@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Masonry from 'react-masonry-component';
 import { LuminousGallery } from 'luminous-lightbox';
-
+import { ReactNode, memo, useEffect, useState } from 'react';
+import Masonry from 'react-masonry-component';
+import { styled } from 'styled-components';
 import { IMAGE_TYPES } from '../constants';
 import { getCloudinaryUrl } from '../helpers/cloudinary-helper';
-
+import { Image } from '../types/types';
 import { ResponsiveImage } from './ResponsiveImage';
 
 const ItemWrapper = styled.div`
@@ -36,7 +35,11 @@ const masonryOptions = {
   transitionDuration: '0s'
 };
 
-const ImageComponent = (props) => {
+const ImageComponent = (props: {
+  isMobile: boolean;
+  image: Image;
+  children: ReactNode;
+}) => {
   const { isMobile, image } = props;
 
   if (isMobile) {
@@ -56,7 +59,9 @@ const ImageComponent = (props) => {
   }
 };
 
-export const MasonryImages = React.memo(function MasonryImages(props) {
+export const MasonryImages = memo(function MasonryImages(props: {
+  images: Image[];
+}) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {

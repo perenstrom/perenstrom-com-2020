@@ -1,15 +1,21 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { memo } from 'react';
+import { styled } from 'styled-components';
 
 import { IMAGE_TYPES } from '../constants';
 import { getCloudinaryUrl } from '../helpers/cloudinary-helper';
+import { CloudinaryAsset } from '../types/cloudinary';
 
 const Image = styled.img`
   display: block;
   width: 100%;
 `;
 
-export const ResponsiveImage = React.memo(function ResponsiveImage(props) {
+export const ResponsiveImage = memo(function ResponsiveImage(props: {
+  cloudinaryImage: CloudinaryAsset | string;
+  width: number;
+  quality?: number;
+  alt?: string;
+}) {
   const { cloudinaryImage, width, quality = 80, alt } = props;
 
   const normalOptions = {
@@ -69,7 +75,12 @@ export const ResponsiveImage = React.memo(function ResponsiveImage(props) {
       />
       <Image
         src={imageUrls.jpeg.normal}
-        alt={alt || cloudinaryImage?.context?.custom?.alt}
+        alt={
+          alt ||
+          (typeof cloudinaryImage !== 'string' &&
+            cloudinaryImage?.context?.custom?.alt) ||
+          ''
+        }
       />
     </picture>
   );
